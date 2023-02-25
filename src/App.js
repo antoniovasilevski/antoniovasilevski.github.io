@@ -1,11 +1,58 @@
-import logo from "./logo.svg"
-import "./App.css"
 import { useState } from "react"
 import ReactDOM from "react-dom/client"
-import FormComponent from "./FormComponent"
-
+import Education from "./components/EducationComponent"
+import FormComponent from "./components/FormComponent"
+import Project from "./components/ProjectComponent"
 
 function App() {
+  window.onload = function () {
+    checkPosition()
+  }
+
+  window.addEventListener("scroll", function () {
+    checkPosition()
+  })
+
+  function checkPosition() {
+    const aboutHeader = document.querySelector(".about-header")
+    const projectsHeader = document.querySelector(".projects-header")
+    const contactHeader = document.querySelector(".contact-header")
+
+    const aboutEl = document.querySelector(".about")
+    const projectsEl = document.querySelector(".projects")
+    const contactEl = document.querySelector(".contact")
+
+    if (isInViewport(aboutEl)) {
+      removeStyle(projectsHeader, contactHeader)
+      setStyle(aboutHeader)
+    } else if (isInViewport(projectsEl)) {
+      removeStyle(aboutHeader, contactHeader)
+      setStyle(projectsHeader)
+    } else if (isInViewport(contactEl)) {
+      removeStyle(projectsHeader, aboutHeader)
+      setStyle(contactHeader)
+    }
+  }
+
+  function removeStyle(firstEl, secondEl) {
+    firstEl.style = "background: transparent;"
+    secondEl.style = "background: transparent;"
+  }
+
+  function setStyle(el) {
+    el.style =
+      "background: white; box-shadow: 0 0 3px #00000099; -webkit-box-shadow: 0 0 3px #00000099;"
+  }
+
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect()
+    return (
+      rect.top >= 0 - 100 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) + 200
+    )
+  }
+
   return (
     <div id="body">
       <div className="wrapper">
@@ -15,19 +62,25 @@ function App() {
               type="button"
               className="about-header"
               value="About"
-              onClick={function handleClick(){document.querySelector('.wrapper').scrollIntoView()}}
+              onClick={function handleClick() {
+                document.querySelector(".wrapper").scrollIntoView()
+              }}
             />
             <input
               type="button"
               className="projects-header"
               value="Projects"
-              onClick={function handleClick(){document.querySelector('.projects').scrollIntoView()}}
+              onClick={function handleClick() {
+                document.querySelector(".projects").scrollIntoView()
+              }}
             />
             <input
               type="button"
               className="contact-header"
               value="Contact"
-              onClick={function handleClick(){document.querySelector('.contact').scrollIntoView()}}
+              onClick={function handleClick() {
+                document.querySelector(".contact").scrollIntoView()
+              }}
             />
           </div>
         </div>
@@ -36,7 +89,7 @@ function App() {
           <div className="about-title">
             <h2>About me</h2>
           </div>
-          <div className="about-content">
+          <div className="about-content ">
             Hi there! My name is Antonio. I'm a junior web developer with a
             passion for building great user experiences.
             <br />
@@ -82,8 +135,33 @@ function App() {
             <div>Flask</div>
           </div>
         </div>
-        <div className="expirience">Work Expirience</div>
-        <div className="projects">Projects</div>
+        <div className="education">
+          <h2 className="education-title">Education</h2>
+          <Education
+            classes="education-component finki"
+            company="Faculty of Computer Science and Engineering, Skopje"
+            field="Computer Science"
+            year="2018 - 2021"
+          />
+          <Education
+            classes="education-component semos"
+            company="Semos Education"
+            field="Python Developer"
+            year="2022"
+          />
+          <Education
+            classes="education-component python-cert"
+            company="Python Institute"
+            field="PCEP Certificate"
+            year="2023"
+          />
+        </div>
+        <div className="projects">
+          <Project
+            title="Data Cleaning"
+            repo="https://github.com/antoniovasilevski/python-mongodb-flask-project"
+          />
+        </div>
         <div className="contact">
           <div className="contact-me">
             <h2>Get in touch!</h2>
@@ -94,7 +172,7 @@ function App() {
               target="_blank"
               className="github-container"
             >
-              <img src="/icons/github.svg" alt="" />
+              <img src="/icons/github.svg" alt="Github" />
               <div className="github">Github</div>
             </a>
             <a
@@ -102,11 +180,12 @@ function App() {
               target="_blank"
               className="linkedin-container"
             >
-              <img src="/icons/linkedin.svg" alt="" />
+              <img src="/icons/linkedin.svg" alt="Linkedin" />
               <div className="linkedin">Linkedin</div>
             </a>
+            <div className="my-email">vasilevski.antonio@outlook.com</div>
           </div>
-          <FormComponent/>
+          <FormComponent />
         </div>
       </div>
     </div>
