@@ -2,14 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/icons/professional-portfolio.png" type="image/x-icon" />
+  <link rel="stylesheet" href="%PUBLIC_URL%/styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -24,6 +27,50 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+  <script type="text/javascript">
+    window.onload = function () {
+      checkPosition()
+    }
+
+    function checkPosition() {
+      const aboutHeader = document.querySelector(".about-header")
+      const projectsHeader = document.querySelector(".projects-header")
+      const contactHeader = document.querySelector(".contact-header")
+
+      const aboutEl = document.querySelector(".about")
+      const projectsEl = document.querySelector(".projects")
+      const contactEl = document.querySelector(".contact")
+
+      if (isInViewport(aboutEl)) {
+        removeStyle(projectsHeader, contactHeader)
+        setStyle(aboutHeader)
+      } else if (isInViewport(projectsEl)) {
+        removeStyle(aboutHeader, contactHeader)
+        setStyle(projectsHeader)
+      } else if (isInViewport(contactEl)) {
+        removeStyle(projectsHeader, aboutHeader)
+        setStyle(contactHeader)
+      }
+    }
+
+    function removeStyle(firstEl, secondEl) {
+      firstEl.style = "background: transparent;"
+      secondEl.style = "background: transparent;"
+    }
+
+    function setStyle(el) {
+      el.style =
+        "background: white; box-shadow: 0 0 3px #00000099; -webkit-box-shadow: 0 0 3px #00000099;"
+    }
+
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect()
+      return (
+        rect.top >= 0 - 100 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 200
+      )
+    }
+  </script>
     <title>React App</title>
   </head>
   <body>
