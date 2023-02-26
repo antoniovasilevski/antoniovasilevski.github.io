@@ -8,7 +8,7 @@ const Project = (props) => {
       <div className="project-content">{content}</div>
       <div className="project-links">
         <a className="repo" href={repo} target="_blank">
-          Repo
+          REPOSITORY
         </a>
       </div>
     </div>

@@ -1,5 +1,3 @@
-import { useState } from "react"
-import ReactDOM from "react-dom/client"
 import Education from "./components/EducationComponent"
 import FormComponent from "./components/FormComponent"
 import Project from "./components/ProjectComponent"
@@ -14,34 +12,20 @@ function App() {
   })
 
   function checkPosition() {
-    const aboutHeader = document.querySelector(".about-header")
-    const projectsHeader = document.querySelector(".projects-header")
-    const contactHeader = document.querySelector(".contact-header")
+    const slidingEl = document.querySelector(".sliding")
 
     const aboutEl = document.querySelector(".about")
-    const projectsEl = document.querySelector(".projects")
+    const educationEl = document.querySelector(".education")
+    const projectsEl = document.querySelector(".project-container")
     const contactEl = document.querySelector(".contact")
 
-    if (isInViewport(aboutEl)) {
-      removeStyle(projectsHeader, contactHeader)
-      setStyle(aboutHeader)
+    if (isInViewport(aboutEl) || isInViewport(educationEl)) {
+      slidingEl.style = "transform: translateX(+0%)"
     } else if (isInViewport(projectsEl)) {
-      removeStyle(aboutHeader, contactHeader)
-      setStyle(projectsHeader)
+      slidingEl.style = "transform: translateX(+102%)"
     } else if (isInViewport(contactEl)) {
-      removeStyle(projectsHeader, aboutHeader)
-      setStyle(contactHeader)
+      slidingEl.style = "transform: translateX(+207%)"
     }
-  }
-
-  function removeStyle(firstEl, secondEl) {
-    firstEl.style = "background: transparent;"
-    secondEl.style = "background: transparent;"
-  }
-
-  function setStyle(el) {
-    el.style =
-      "background: white; box-shadow: 0 0 3px #00000099; -webkit-box-shadow: 0 0 3px #00000099;"
   }
 
   function isInViewport(element) {
@@ -54,10 +38,11 @@ function App() {
   }
 
   return (
-    <div id="body">
+    <div id="container">
       <div className="wrapper">
         <div className="header-container">
           <div className="header">
+            <div className="sliding"></div>
             <input
               type="button"
               className="about-header"
@@ -89,25 +74,31 @@ function App() {
           <div className="about-title">
             <h2>About me</h2>
           </div>
-          <div className="about-content ">
-            Hi there! My name is Antonio. I'm a junior web developer with a
-            passion for building great user experiences.
+          <div className="about-content">
+            Hi there! My name is <span>Antonio Vasilevski</span>. I'm a junior
+            web developer with a passion for building great user experiences.
             <br />
             <br />
-            For the past 2 years I've had the opportunity to work on a constiety
+            For the past 2 years I've had the opportunity to work on a variety
             of freelance and personal projects while attending university and
             completing a Python developer course.
             <br />
             <br />
             As a developer, I'm always looking to learn and grow. I'm
-            comfortable working with a constiety of programming languages and
-            frameworks, and always eager to take on new challenges. I'm a strong
-            communicator and I believe that great things can happen when a team
-            of talented people comes together to work towards a common goal.
+            comfortable working with a variety of programming languages and
+            frameworks, and always eager to take on new challenges.
             <br />
             <br />
             Thank you for taking the time to learn a little bit about me.
           </div>
+          <input
+            type="button"
+            className="contact-me-button"
+            value="Contact me!"
+            onClick={function handleClick() {
+              document.querySelector(".contact").scrollIntoView()
+            }}
+          />
         </div>
         <div className="skills-container">
           <div className="javascript-icon">
@@ -157,8 +148,35 @@ function App() {
           />
         </div>
         <div className="projects">
+          <h2 className="project-title">Projects</h2>
           <Project
-            title="Data Cleaning"
+            classes="project-container data-cleaning"
+            title="Data Cleaning Flask App"
+            image="/images/data cleaning app.png"
+            content="Web application built in Flask, part of a Python Developer Academy.
+             Main focus of the aplication was the back-end, cleaning and updating a SQL database. 
+             Additionaly the data is encrypted and written to a MongoDB collection, after which
+             it is exported to an HTML table.
+             Front-end is done with HTML/CSS/JavaScript."
+            repo="https://github.com/antoniovasilevski/python-mongodb-flask-project"
+          />
+          <Project
+            classes="project-container portfolio-app"
+            title="Portfolio with React"
+            content="Started writing this portfolio project in HTML, CSS and a few JavaScript functions.
+            Converted to a React app soon after, using React Components for most of the objects in the app.
+            Email form is done with a custom FormComponent class, validating the email through an await fetch 
+            api request, if the email address entered has a valid SMTP connection, EmailJS is used to
+            send the message to my email. Navbar slider animation is done on scroll, checks if an element is in view
+            of the client, then using translateY, moves the slider appropriately. Using CSS Grid for most of the site."
+            repo="https://github.com/antoniovasilevski/portfolio-app"
+          />
+          <Project
+            classes="project-container sports-store"
+            title="Sports Store"
+            image="/images/sports-website.png"
+            content="Personal project website, expirimenting with CSS animations, some animanions with JavaScript functions
+             like background following mouse pointer, load in elements on scroll"
             repo="https://github.com/antoniovasilevski/python-mongodb-flask-project"
           />
         </div>
