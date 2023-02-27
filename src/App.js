@@ -24,7 +24,7 @@ function App() {
     } else if (isInViewport(projectsEl)) {
       slidingEl.style = "transform: translateX(+102%)"
     } else if (isInViewport(contactEl)) {
-      slidingEl.style = "transform: translateX(+207%)"
+      slidingEl.style = "transform: translateX(+204%)"
     }
   }
 
@@ -69,7 +69,6 @@ function App() {
             />
           </div>
         </div>
-        <div className="picture">Picture</div>
         <div className="about">
           <div className="about-title">
             <h2>About me</h2>
@@ -176,7 +175,7 @@ function App() {
             title="Sports Store"
             image="/images/sports-website.png"
             content="Personal project website, expirimenting with CSS animations, some animanions with JavaScript functions
-             like background following mouse pointer, load in elements on scroll"
+             like background following mouse pointer, load in elements on scroll."
             repo="https://github.com/antoniovasilevski/python-mongodb-flask-project"
           />
         </div>
