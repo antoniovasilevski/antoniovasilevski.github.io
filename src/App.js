@@ -113,7 +113,7 @@ function App() {
             <div>CSS</div>
           </div>
           <div className="react-icon">
-            <img src="/icons//react.svg" alt="" />
+            <img src="/icons/react.svg" alt="" />
             <div>React</div>
           </div>
           <div className="python-icon">
@@ -151,7 +151,7 @@ function App() {
           <Project
             classes="project-container data-cleaning"
             title="Data Cleaning Flask App"
-            image="/images/data cleaning app.png"
+            image="data cleaning app.png"
             content="Web application built in Flask, part of a Python Developer Academy.
              Main focus of the aplication was the back-end, cleaning and updating a SQL database. 
              Additionaly the data is encrypted and written to a MongoDB collection, after which
@@ -173,7 +173,7 @@ function App() {
           <Project
             classes="project-container sports-store"
             title="Sports Store"
-            image="/images/sports-website.png"
+            image="sports-store.png"
             content="Personal project website, expirimenting with CSS animations, some animanions with JavaScript functions
              like background following mouse pointer, load in elements on scroll."
             repo="https://github.com/antoniovasilevski/python-mongodb-flask-project"

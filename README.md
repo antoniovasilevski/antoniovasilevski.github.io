@@ -5,7 +5,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Normalizer</h3>
+<h3 align="center">Portfolio</h3>
 
   <p align="center">
     Portfolio Web application built in React.
